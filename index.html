@@ -456,66 +456,92 @@
         height: auto;
       }
     }
+    @media only screen and (max-width: 768px) {
+      .scrolling-gallery {
+        height: auto;
+        overflow: auto;
+      }
+
+      .gallery {
+        display: flex;
+        flex-direction: column;
+        animation: none; /* Disable scrolling animation */
+      }
+
+      .photo,
+      .photo.landscape,
+      .photo.portrait {
+        width: 100%;
+        height: auto;
+      }
+
+      .photo img {
+        height: auto;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+
     @media only screen and (max-width: 480px) {
-    body {
-      font-size: 14px;
-    }
+      body {
+        font-size: 14px;
+      }
 
-    header {
-      padding: 8px 10px;
-    }
+      header {
+        padding: 8px 10px;
+      }
 
-    .logo {
-      height: 50px;
-    }
+      .logo {
+        height: 50px;
+      }
 
-    .hamburger {
-      font-size: 1.5em;
-    }
+      .hamburger {
+        font-size: 1.5em;
+      }
 
-    .page-indicator {
-      font-size: 1.2em;
-      margin: 8px 0;
-    }
+      .page-indicator {
+        font-size: 1.2em;
+        margin: 8px 0;
+      }
 
-    .portrait-photos img,
-    .photo-grid img,
-    .model-card img {
-      width: 100%;
-      height: auto;
-    }
+      .portrait-photos img,
+      .photo-grid img,
+      .model-card img {
+        width: 100%;
+        height: auto;
+      }
 
-    .model-card {
-      padding: 10px;
-    }
+      .model-card {
+        padding: 10px;
+      }
 
-    .portrait-group,
-    .model-card {
-      margin-bottom: 15px;
-    }
+      .portrait-group,
+      .model-card {
+        margin-bottom: 15px;
+      }
 
-    .booking-button {
-      width: 100%;
-      font-size: 1em;
-    }
+      .booking-button {
+        width: 100%;
+        font-size: 1em;
+      }
 
-    .overlay-text {
-      padding: 10px;
-    }
+      .overlay-text {
+        padding: 10px;
+      }
 
-    footer {
-      font-size: 0.8em;
-    }
+      footer {
+        font-size: 0.8em;
+      }
 
-    .dropdown {
-      width: 95%;
-      right: 2.5%;
-    }
+      .dropdown {
+        width: 95%;
+        right: 2.5%;
+      }
 
-    .gallery {
-      grid-template-columns: 1fr; /* stack scrolling gallery images */
+      .gallery {
+        grid-template-columns: 1fr; /* stack scrolling gallery images */
+      }
     }
-  }
 
     @media only screen and (max-width: 768px) {
       header {
