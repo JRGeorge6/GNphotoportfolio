@@ -449,95 +449,103 @@
     /* ----------- mobile fallback (≤ 768 px) --------------------------- */
 
     @media only screen and (max-width: 768px) {
-      header {
-        flex-direction: column;
-        padding: 10px 15px;
-      }
-      .logo {
-        height: 60px;
-      }
-      .page-indicator {
-        font-size: 1.5em;
-        position: static;
-        transform: none;
-        margin: 10px 0;
-      }
-      .hamburger-container {
-        align-self: flex-end;
-      }
+  /* 1) allow the page to scroll again (so header shrink works) */
       main {
-        padding: 15px;
+        overflow: visible;
       }
-      .photo-grid,
-      .portrait-photos,
-      .models-grid {
+
+      /* 2) lock the gallery viewport and kill touch–scroll on it */
+      .scrolling-gallery {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;       /* no manual swipe */
+        pointer-events: none;   /* ignore touch/drags */
+      }
+
+      /* 3) absolutely position the animated .gallery, slow it down */
+      .gallery {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;          /* one column of full-screen slides */
         flex-direction: column;
-        gap: 10px;
+        margin: 0;
+        gap: 0;
+        animation: scrollGallery 30s linear infinite; /* ← slowed from 20s to 30s */
+        width: 100%;
+        height: auto;           /* height = N × 100vh via its children */
       }
+
+      .photo {
+        flex: 0 0 100vh;        /* each slide = exactly 1 viewport high */
+        width: 100vw;
+        margin: 0;
+        border: none;
+        border-radius: 0;
+      }
+
+      .photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      /* cancel any grid spans */
+      .photo.landscape,
+      .photo.portrait {
+        grid-column: auto !important;
+        grid-row:    auto !important;
+      }
+
+      /* Portrait page: stack groups & photos full-width */
       .portrait-groups {
         grid-template-columns: 1fr;
+        gap: 20px;
       }
-      .photo-grid img,
-      .portrait-photos img,
-      .model-card img {
+      .portrait-photos img {
         width: 100%;
         height: auto;
+      }
+
+      /* Visual portfolio (model one/two/three): force single-column */
+      .portfolio-images {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      .portfolio-images img {
+        width: 100%;
+        height: auto;
+      }
+
+      /* Models page: one-column list of cards */
+      .models-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
       }
       .model-card {
         width: 100%;
         padding: 15px;
         margin-bottom: 15px;
       }
-      .dropdown {
-        top: 60px;
-        right: 5%;
-        width: 90%;
+
+      /* Art & Product pages: let images shrink to fit */
+      .art-column .photo-item,
+      .product-column .photo-item {
+        height: auto;
       }
-      footer {
-        padding: 10px;
-        font-size: 0.9em;
-      }
-      .art-column .photo-item {
+      .art-column .photo-item img,
+      .product-column .photo-item img {
+        position: static;
+        transform: none;
+        width: 100%;
         height: auto;
       }
     }
-   /* ─── Mobile: one-image full-screen scrolling ───────────────────────────────── */
-    @media only screen and (max-width: 768px) {
-      .scrolling-gallery {
-        width: 100vw;
-        height: 100vh;
-        overflow: hidden;        /* hide everything except the one visible frame */
-      }
 
-      .gallery {
-        display: flex;           /* stack each .photo vertically */
-        flex-direction: column;
-        gap: 0;                  /* no gutters on the sides */
-        animation: scrollGallery 20s linear infinite; /* keep your existing animation */
-      }
-
-      .photo {
-        flex: 0 0 100vh;         /* each photo takes exactly one viewport-height */
-        width: 100vw;            /* full width, no side borders */
-        margin: 0;               /* kill any default margins */
-        border: none;
-        border-radius: 0;
-      }
-
-      .photo img {
-        width: 100%;             /* fill the container */
-        height: 100%;
-        object-fit: cover;       /* crop to fill without distortion */
-        display: block;
-      }
-
-      /* undo any grid-span rules that might sneak in */
-      .photo.landscape,
-      .photo.portrait {
-        grid-column: auto !important;
-        grid-row:    auto !important;
-      }
-    } 
   </style>
 </head>
 <body>
