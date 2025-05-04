@@ -459,28 +459,34 @@
     @media only screen and (max-width: 768px) {
       .scrolling-gallery {
         height: auto;
-        overflow: auto;
+        overflow-y: auto;
       }
 
       .gallery {
-        display: flex;
-        flex-direction: column;
-        animation: none; /* Disable scrolling animation */
+        display: block;
+        animation: none;
       }
 
-      .photo,
-      .photo.landscape,
-      .photo.portrait {
+      .photo {
         width: 100%;
         height: auto;
+        margin-bottom: 10px;
       }
 
       .photo img {
-        height: auto;
         width: 100%;
+        height: auto;
         object-fit: cover;
       }
+
+      /* Remove span behavior on mobile */
+      .photo.landscape,
+      .photo.portrait {
+        grid-column: auto !important;
+        grid-row: auto !important;
+      }
     }
+
 
     @media only screen and (max-width: 480px) {
       body {
