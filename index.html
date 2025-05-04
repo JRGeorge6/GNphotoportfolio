@@ -447,107 +447,6 @@
     }
 
     /* ----------- mobile fallback (≤ 768 px) --------------------------- */
-    @media only screen and (max-width: 768px) {
-      .product-column .photo-item   { height: auto; }
-      .product-column .photo-item img {
-        position: static;
-        transform: none;
-        width: 100%;
-        height: auto;
-      }
-    }
-    @media only screen and (max-width: 768px) {
-      .scrolling-gallery {
-        height: auto;
-        overflow-y: auto;
-      }
-
-      .gallery {
-        display: block;
-        animation: none;
-      }
-
-      .photo {
-        width: 100%;
-        height: auto;
-        margin-bottom: 10px;
-      }
-
-      .photo img {
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-      }
-
-      /* Remove span behavior on mobile */
-      .photo.landscape,
-      .photo.portrait {
-        grid-column: auto !important;
-        grid-row: auto !important;
-      }
-    }
-
-
-    @media only screen and (max-width: 480px) {
-      body {
-        font-size: 14px;
-      }
-
-      header {
-        padding: 8px 10px;
-      }
-
-      .logo {
-        height: 50px;
-      }
-
-      .hamburger {
-        font-size: 1.5em;
-      }
-
-      .page-indicator {
-        font-size: 1.2em;
-        margin: 8px 0;
-      }
-
-      .portrait-photos img,
-      .photo-grid img,
-      .model-card img {
-        width: 100%;
-        height: auto;
-      }
-
-      .model-card {
-        padding: 10px;
-      }
-
-      .portrait-group,
-      .model-card {
-        margin-bottom: 15px;
-      }
-
-      .booking-button {
-        width: 100%;
-        font-size: 1em;
-      }
-
-      .overlay-text {
-        padding: 10px;
-      }
-
-      footer {
-        font-size: 0.8em;
-      }
-
-      .dropdown {
-        width: 95%;
-        right: 2.5%;
-      }
-
-      .gallery {
-        grid-template-columns: 1fr; /* stack scrolling gallery images */
-      }
-    }
 
     @media only screen and (max-width: 768px) {
       header {
@@ -602,6 +501,43 @@
         height: auto;
       }
     }
+   /* ─── Mobile: one-image full-screen scrolling ───────────────────────────────── */
+    @media only screen and (max-width: 768px) {
+      .scrolling-gallery {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;        /* hide everything except the one visible frame */
+      }
+
+      .gallery {
+        display: flex;           /* stack each .photo vertically */
+        flex-direction: column;
+        gap: 0;                  /* no gutters on the sides */
+        animation: scrollGallery 20s linear infinite; /* keep your existing animation */
+      }
+
+      .photo {
+        flex: 0 0 100vh;         /* each photo takes exactly one viewport-height */
+        width: 100vw;            /* full width, no side borders */
+        margin: 0;               /* kill any default margins */
+        border: none;
+        border-radius: 0;
+      }
+
+      .photo img {
+        width: 100%;             /* fill the container */
+        height: 100%;
+        object-fit: cover;       /* crop to fill without distortion */
+        display: block;
+      }
+
+      /* undo any grid-span rules that might sneak in */
+      .photo.landscape,
+      .photo.portrait {
+        grid-column: auto !important;
+        grid-row:    auto !important;
+      }
+    } 
   </style>
 </head>
 <body>
