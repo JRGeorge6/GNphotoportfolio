@@ -447,6 +447,19 @@
     }
 
     /* ----------- mobile fallback (≤ 768 px) --------------------------- */
+    .contact-section {
+      max-width: 600px;
+      margin: 40px auto;
+      text-align: center;
+      font-size: 1.2em;
+    }
+    .contact-section a {
+      color: var(--accent-1);
+      text-decoration: none;
+    }
+    .contact-section a:hover {
+      text-decoration: underline;
+    }
 
     @media only screen and (max-width: 768px) {
   /* 1) allow the page to scroll again (so header shrink works) */
@@ -563,6 +576,7 @@
       <a href="#" onclick="changePage('Models'); return false;">Models</a>
       <a href="#" onclick="changePage('Art'); return false;">Conceptual / Fine Art</a>
       <a href="#" onclick="changePage('Product'); return false;">Product</a>
+      <a href="#" onclick="changePage('Contact'); return false;">Contact</a>
       <a href="#" onclick="changePage('About'); return false;">About</a>
     </div>
   </header>
@@ -1116,6 +1130,23 @@
               <li><strong>Legal &amp; Privacy:</strong> All images are provided with standard usage rights. Please see our <a href="privacy_policy.html" target="_blank">Privacy Policy</a> for details.</li>
             </ul>
           </section>
+        `;
+      }
+      else if(page === 'Contact') {
+        content = `
+          <h1>Contact</h1>
+          <div class="contact-section">
+            <p>Instagram: 
+              <a href="https://www.instagram.com/omeggies59" target="_blank">
+                @omeggies59
+              </a>
+            </p>
+            <p>Email: 
+              <a href="mailto:george.nasir0806@gmail.com">
+                george.nasir0806@gmail.com
+              </a>
+            </p>
+          </div>
         `;
       }
       else if(page === 'About') {
